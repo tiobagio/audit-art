@@ -4,5 +4,6 @@ default['audit']['profiles'] = {}
 
 default['audit-artifactory']['profiles'] = {}
 
-# define the following attribute in role/environment
+# define the following attributes in role/environment
 # default['audit-artifactory']['base_url'] = ''
+# default['audit-artifactory']['repo'] = ''
