@@ -18,7 +18,22 @@ action :install do
 
   # get the version of the latest
   if version.eql?('latest')
+    # uri = URI.parse(new_resource.source)
+
+    # http = Net::HTTP.new(uri.host, uri.port)
+    # http.use_ssl = uri.scheme == 'https'
+    # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    # data = http.get(uri.request_uri)
+    # uri = URI.parse(new_resource.source)
+
     url = "#{base_url}/api/search/latestVersion?g=#{group}&a=#{artifact}&repos=#{repo}"
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    if uri.scheme.eql?('https')
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
     version = Net::HTTP.get_response(URI.parse(url)).body
   end
 
